@@ -1,0 +1,12 @@
+---
+- name: Überprüfen, ob Host online ist
+  hosts: all
+  gather_facts: no
+
+  tasks:
+  - name: Ping-Test, um die Erreichbarkeit zu prüfen
+    ansible.builtin.ping:
+
+  - name: Ausgabe, wenn der Host erreichbar ist
+    debug:
+      msg: "Der Host {{ inventory_hostname }} ist erreichbar."
