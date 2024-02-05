@@ -1,13 +1,3 @@
-all:
-  children:
-    Webserver:
-      hosts:
-        Plesk-Webserver:
-          ansible_host: 192.168.19.201
-
-    Monitoring:
-      hosts:
-        AWX:
-          ansible_host: 192.168.151.130
-        Nagios:
-          ansible_host: 192.168.151.20
+---
+ansible_host: 192.168.150.20
+ansible_ssh_common_args: '-oHostKeyAlgorithms=+ssh-rsa'
