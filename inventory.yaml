@@ -1,0 +1,14 @@
+
+all:
+  children:
+    Webserver:
+      hosts:
+        Plesk-Webserver:
+          ansible_host: 192.168.19.201
+
+    Monitoring:
+      hosts:
+        AWX:
+          ansible_host: 192.168.151.130
+        Nagios:
+          ansible_host: 192.168.151.20
