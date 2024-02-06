@@ -3,4 +3,4 @@
   ansible.posix.authorized_key:
     user: charlietteeiiiaaste
     state: present
-    key: https://github.com/charlie.keys
+    key: https://github.com/gsg-git/awx_pub/blob/main/awxtestpub.key
