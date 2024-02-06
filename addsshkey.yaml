@@ -1,6 +1,11 @@
 ---
-- name: Set authorized keys taken from url
-  ansible.posix.authorized_key:
-    user: charlietteeiiiaaste
-    state: present
-    key: https://github.com/gsg-git/awx_pub/blob/main/awxtestpub.key
+- name: Set authorized keys
+  hosts: all
+  gather_facts: false
+  
+  tasks:
+    - name: Set authorized keys taken from url
+      ansible.posix.authorized_key:
+        user: charlietteeiiiaaste
+        state: present
+        key: https://github.com/gsg-git/awx_pub/blob/main/awxtestpub.key
