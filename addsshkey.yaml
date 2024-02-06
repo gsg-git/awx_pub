@@ -6,6 +6,6 @@
   tasks:
     - name: Set authorized keys taken from url
       ansible.posix.authorized_key:
-        user: charlietteeiiiaaste
+        user: root
         state: present
         key: https://github.com/gsg-git/awx_pub/blob/main/awxtestpub.key
