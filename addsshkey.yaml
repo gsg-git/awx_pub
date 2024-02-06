@@ -9,3 +9,4 @@
         user: root
         state: present
         key: https://github.com/gsg-git/awx_pub/blob/main/awxtestpub
+        validate_certs: false
