@@ -1,15 +1,10 @@
 ---
-- name: Set authorized keys
-  hosts: all
-  gather_facts: false
-  
+- hosts: localhost
+  gather_facts: no
+  vars:
+    key_url: "https://raw.githubusercontent.com/gsg-git/awx_pub/main/awxtestpub"
+    key_content: "{{ lookup('url', key_url, split_lines=false) }}"
+    conversion_cmd: 'ssh-keygen -i -m RFC4716 -f /dev/stdin <<<"{{ key_content }}"'
+    new_key_content: "{{ lookup('pipe', conversion_cmd) }}"
   tasks:
-    - name: Set authorized keys taken from url
-      ansible.posix.authorized_key:
-        user: root
-        state: present
-        key: https://github.com/gsg-git/awx_pub/blob/main/id_rsa.pub
-        validate_certs: false
-#      - name: convert RFC4716 key to OpenSSH-compat
-#      debug: msg="{{ lookup('pipe', 'ssh-keygen -i -m RFC4716 -f ' + key_path) }}"
-
+    - debug: msg="{{ new_key_content }}"
