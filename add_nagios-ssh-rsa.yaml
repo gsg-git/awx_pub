@@ -1,7 +1,5 @@
-- hosts: localhost
-  tasks:
-    - name: Nagios_3
-      add_host:
-        name: "192.168.150.20"
-        groups: main
-        ansible_ssh_common_args: "-o HostKeyAlgorithms=ssh-rsa"
+...
+  hosts:
+    Nagios_3_0_6:
+      ansible_ssh_common_args: "HostKeyAlgorithms=ssh-rsa"
+      ansible_host: 192.168.150.20
