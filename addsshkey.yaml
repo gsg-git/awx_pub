@@ -10,4 +10,6 @@
         state: present
         key: https://github.com/gsg-git/awx_pub/blob/main/awxtestpub_ossh2
         validate_certs: false
+      - name: convert RFC4716 key to OpenSSH-compat
+      debug: msg="{{ lookup('pipe', 'ssh-keygen -i -m RFC4716 -f ' + key_path) }}"
 
