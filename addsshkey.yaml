@@ -8,5 +8,6 @@
       ansible.posix.authorized_key:
         user: root
         state: present
-        key: "{{ lookup('file', 'awxtestpub_ossh') }}"
+        key: https://github.com/gsg-git/awx_pub/blob/main/awxtestpub_ossh
         validate_certs: false
+
