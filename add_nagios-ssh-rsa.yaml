@@ -1,5 +1,5 @@
-group0:
+all:
   hosts:
-    host0:
+    Nagios_3_0_6-withsshconf:
       ansible_host: 192.168.150.20
       ansible_ssh_common_args: '-oHostKeyAlgorithms=+ssh-rsa'
