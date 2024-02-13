@@ -1,5 +1,6 @@
 ---
-- hosts: localhost
+- name: sshpubkeytransfer
+  hosts: all
   gather_facts: no
   vars:
     key_url: "https://raw.githubusercontent.com/gsg-git/awx_pub/main/awxtestpub"
