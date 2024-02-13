@@ -7,5 +7,5 @@
     key_content: "{{ lookup('url', key_url, split_lines=false) }}"
     conversion_cmd: 'ssh-keygen -i -m RFC4716 -f /dev/stdin <<<"{{ key_content }}"'
     new_key_content: "{{ lookup('pipe', conversion_cmd) }}"
-  tasks:
-    - debug: msg="{{ new_key_content }}"
+#  tasks:
+ #   - debug: msg="{{ new_key_content }}"
