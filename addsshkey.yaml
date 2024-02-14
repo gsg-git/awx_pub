@@ -11,6 +11,6 @@
   tasks:
     - name: Set authorized keys taken from url
       ansible.posix.authorized_key:
-        user: rott
+        user: root
         state: present
         key: "{{ new_key_content }}"
