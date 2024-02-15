@@ -9,12 +9,11 @@
     new_key_content: "{{ lookup('pipe', conversion_cmd) }}"
   
   tasks:
-   - name: add comment before entering public key
+- name: add comment before entering public key
      lineinfile:
         path: /home/gsa/.ssh/authorized_keys
         line: "#testkey"
-
-    - name: Set authorized keys taken from url
+- name: Set authorized keys taken from url
       ansible.posix.authorized_key:
         user: root
         state: present
