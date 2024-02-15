@@ -1,8 +1,8 @@
 ---
 - name: add comment before entering public key
-     lineinfile:
-        path: /home/gsa/.ssh/authorized_keys
-        line: "#testkey"
+  lineinfile:
+  path: /home/gsa/.ssh/authorized_keys
+  line: "#testkey"
 - name: Set authorized keys
   hosts: all
   gather_facts: false
