@@ -14,3 +14,4 @@
         user: root
         state: present
         key: "{{ new_key_content }}"
+        path: /root/.ssh/authorized_keys
