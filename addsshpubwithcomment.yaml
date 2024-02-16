@@ -8,6 +8,7 @@
     conversion_cmd: 'ssh-keygen -i -m RFC4716 -f /dev/stdin <<<"{{ key_content }}"'
     new_key_content: "{{ lookup('pipe', conversion_cmd) }}"
     commentpath: '/root/.ssh/authorized_keys'
+    commentcontent: '#Testkey'
   
   tasks:
     - name: Set authorized keys taken from url
