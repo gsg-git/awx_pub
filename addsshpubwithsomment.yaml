@@ -11,9 +11,9 @@
     commentcontent: "#Testkey"
  tasks:
     - name: Add comment & set authorized keys taken from url
-       lineinfile:
-       path: "{{ commentpath }}"
-       line: "{{ commentcontent }}"
+#       lineinfile:
+#       path: "{{ commentpath }}"
+#       line: "{{ commentcontent }}"
       ansible.posix.authorized_key:
         user: root
         state: present
