@@ -12,6 +12,9 @@
   
   tasks:
     - name: Set authorized keys taken from url
+      lineinfile:
+        path: "{{ commentpath }}"
+        line: "{{ commentcontent }}"
       ansible.posix.authorized_key:
         user: root
         state: present
