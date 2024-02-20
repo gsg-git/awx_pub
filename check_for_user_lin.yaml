@@ -1,0 +1,5 @@
+---
+- hosts: all
+  tasks:
+    - name: See if the requested user exists y/n
+      user: name="aravi" state=present
