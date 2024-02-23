@@ -1,6 +1,6 @@
 ---
 - name: Writing Web Server 
-  hosts: any
+  hosts: all
   remote_user: root
   become: yes
 
