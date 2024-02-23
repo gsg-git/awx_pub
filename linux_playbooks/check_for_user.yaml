@@ -1,0 +1,17 @@
+- hosts: localhost
+  gather_facts: no
+  vars:
+    dis_user:
+    - gsa
+#    - mary
+#    - Skeeter
+    - root
+  tasks:
+  - name: Get all account info
+    getent:
+      database: passwd
+  - debug:
+      msg: "{{ item }}"
+    when: item in ansible_facts.getent_passwd
+    with_items:
+    - "{{ dis_user | lower }}"
