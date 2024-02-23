@@ -11,11 +11,11 @@
       state: latest
   tasks:
     - name: Angegebene Pakete installieren
-       ansible.builtin.apt:
-      name: "{{ packages }}"
-      state: present
-      update_cache: yes
-...
+      ansible.builtin.apt:
+       name: "{{ packages }}"
+       state: present
+       update_cache: yes
+
 
 
 
