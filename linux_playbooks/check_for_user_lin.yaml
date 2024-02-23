@@ -2,4 +2,4 @@
 - hosts: all
   tasks:
     - name: See if the requested user exists y/n
-      user: name="gsa" state=present
+      user: name="mad" state=present
