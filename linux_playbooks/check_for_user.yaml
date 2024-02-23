@@ -3,8 +3,8 @@
   vars:
     dis_user:
     - gsa
-#    - mary
-#    - Skeeter
+    - mary
+    - Skeeter
     - root
   tasks:
   - name: Get all account info
