@@ -1,0 +1,9 @@
+---
+- name: Replace text in a file
+  hosts: all
+  tasks:
+    - name: Replace text
+      replace:
+        path: /etc/myconfig.conf
+        regexp: 'old_value'
+        replace: 'new_value'

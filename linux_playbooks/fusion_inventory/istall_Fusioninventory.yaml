@@ -25,6 +25,7 @@
         - libtext-template-perl
         - libxml-xpath-perl
         - libyaml-tiny-perl
+        - fusioninventory-agent
       state: latest
   tasks:
     - name: Angegebene Pakete installieren
@@ -37,7 +38,7 @@
   hosts: all
   gather_facts: false
   vars:
-    fusioninventory__agent_package_url: "https://raw.githubusercontent.com/gsg-git/awx_pub/main/awxtestpub"
+    fusioninventory__agent_package_url: "https://github.com/fusioninventory/fusioninventory-for-glpi/releases"
    fusioninventory__agent_conf_src: "gsg-git/awx_pub/linux_playbooks/fusion_inventory/agent.cfg"
     conversion_cmd: 'ssh-keygen -i -m RFC4716 -f /dev/stdin <<<"{{ key_content }}"'
     new_key_content: "{{ lookup('pipe', conversion_cmd) }}"
