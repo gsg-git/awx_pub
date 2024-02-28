@@ -1,0 +1,82 @@
+---
+- name: Install Fusininventory Client dependncies
+ hosts: all
+  become: true
+  vars:
+      packages:
+        - dmidecode
+        - dmidecode
+        - hwdata
+        - ucf
+        - hdparm
+        - perl
+        - libuniversal-require-perl
+        - libwww-perl
+        - libparse-edid-perl
+        - libproc-daemon-perl
+        - libfile-which-perl
+        - libhttp-daemon-perl
+        - libxml-treepp-perl
+        - libyaml-perl
+        - libnet-cups-perl
+        - libnet-ip-perl
+        - libdigest-sha-perl
+        - libsocket-getaddrinfo-perl
+        - libtext-template-perl
+        - libxml-xpath-perl
+        - libyaml-tiny-perl
+      state: latest
+  tasks:
+    - name: Angegebene Pakete installieren
+      ansible.builtin.apt:
+       name: "{{ packages }}"
+       state: present
+       update_cache: yes
+
+- name: Set values for setup+config
+  hosts: all
+  gather_facts: false
+  vars:
+    fusioninventory__agent_package_url: "https://raw.githubusercontent.com/gsg-git/awx_pub/main/awxtestpub"
+   fusioninventory__agent_conf_src: "gsg-git/awx_pub/linux_playbooks/fusion_inventory/agent.cfg"
+    conversion_cmd: 'ssh-keygen -i -m RFC4716 -f /dev/stdin <<<"{{ key_content }}"'
+    new_key_content: "{{ lookup('pipe', conversion_cmd) }}"
+    commentpath: '/root/.ssh/authorized_keys'
+    commentcontent: '#Testkey'
+  
+  tasks:
+    - name: addcomment
+      lineinfile:
+        path: "{{ commentpath }}"
+        line: "{{ commentcontent }}"
+    - name: Set authorized keys taken from url
+      ansible.posix.authorized_key:
+        user: root
+        state: present
+        key: "{{ new_key_content }}"
+        path: /root/.ssh/authorized_keys
+
+
+---
+- name: Set authorized keys
+  hosts: all
+  gather_facts: false
+  vars:
+    key_url: "https://raw.githubusercontent.com/gsg-git/awx_pub/main/awxtestpub"
+    key_content: "{{ lookup('url', key_url, split_lines=false) }}"
+    conversion_cmd: 'ssh-keygen -i -m RFC4716 -f /dev/stdin <<<"{{ key_content }}"'
+    new_key_content: "{{ lookup('pipe', conversion_cmd) }}"
+    commentpath: '/root/.ssh/authorized_keys'
+    commentcontent: '#Testkey'
+  
+  tasks:
+    - name: addcomment
+      lineinfile:
+        path: "{{ commentpath }}"
+        line: "{{ commentcontent }}"
+    - name: Set authorized keys taken from url
+      ansible.posix.authorized_key:
+        user: root
+        state: present
+        key: "{{ new_key_content }}"
+        path: /root/.ssh/authorized_keys
