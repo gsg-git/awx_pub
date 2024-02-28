@@ -1,6 +1,6 @@
 ---
 - name: list of fusininventory agent + dependencies
- hosts: all
+  hosts: all
   become: true
   vars:
       packages:
