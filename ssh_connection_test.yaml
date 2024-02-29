@@ -1,10 +1,10 @@
 ---
-- name: Überprüfen, ob Host online ist
+- name: SSH Connection Test
   hosts: all
   gather_facts: no
 
   tasks:
-  - name: Ping-Test, um die Erreichbarkeit zu prüfen
+  - name: SSH Connection Test
     ansible.builtin.ping:
 
   - name: Ausgabe, wenn der Host erreichbar ist
