@@ -1,0 +1,9 @@
+---
+apiVersion: awx.ansible.com/v1beta1
+kind: AWXRestore
+metadata:
+  name: restore1
+  namespace: my-namespace
+spec:
+  deployment_name: mytower
+  backup_name: awxbackup-2021-04-22
