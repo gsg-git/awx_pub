@@ -1,0 +1,18 @@
+- name:  ========== Import All AWX Settings ==========
+  connection: local
+  hosts: lab
+  gather_facts: no
+  environment:
+    CONTROLLER_USERNAME: "{{ vault_controller_username }}"
+    CONTROLLER_PASSWORD: "{{ vault_controller_password }}"
+    CONTROLLER_HOST: "{{ awx_url }}"
+
+  tasks:
+    - name: IMPORT SETTINGS FROM EXPORTS
+      awx.awx.import:
+        assets: "{{ lookup('file', item) | from_yaml }}"
+      when: "'backup_job_templates' in item"
+      with_fileglob:
+        - exports/backup_*.yml
+      loop_control:
+        label: "{{ item | split('/') | last }}"
