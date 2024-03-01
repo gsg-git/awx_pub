@@ -16,12 +16,12 @@
     - name: SAVE EXPORT TO YML FILE
       delegate_to: localhost
       copy:
-        dest: "exports/backup.yml"
+        dest: "/var/lib/awx/exports/backup.yml"
         content: "{{ assets.assets | to_yaml }}"
 
     - name: SAVE JOB_TEMPLATES TO YML FILE
       delegate_to: localhost
       copy:
-        dest: "exports/backup_{{ item.key }}.yml"
+        dest: "/var/lib/awx/exports/backup_{{ item.key }}.yml"
         content: "{{ { item.key : item.value } | to_yaml }}"
       with_items: "{{ assets.assets | dict2items }}"
