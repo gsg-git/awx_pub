@@ -3,10 +3,10 @@
   hosts: localhost
   gather_facts: no
 
-    environment:
-    CONTROLLER_USERNAME: "{{ vault_controller_username }}"
-    CONTROLLER_PASSWORD: "{{ vault_controller_password }}"
-    CONTROLLER_HOST: "{{ awx_url }}"
+  environment:
+   CONTROLLER_USERNAME: "{{ vault_controller_username }}"
+   CONTROLLER_PASSWORD: "{{ vault_controller_password }}"
+   CONTROLLER_HOST: "{{ awx_url }}"
   
   tasks:
     - name: Export All Settings
