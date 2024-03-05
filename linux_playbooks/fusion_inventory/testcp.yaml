@@ -7,7 +7,7 @@
     - name: Kopiere /tmp/agent.cfg nach /root/agent.cfg
       ansible.builtin.copy:
         src: /tmp/agent.cfg
-        dest: /root/agent.cfg
+        dest: /home/agent.cfg
         owner: root
         group: root
         mode: '0644'
