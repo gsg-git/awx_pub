@@ -1,6 +1,6 @@
 - copy:
     src: "/tmp/agent.cfg"
-    dest: "/root/agent.cfg"
+    dest: "/root/"
   become: true
   become_user: root
 
