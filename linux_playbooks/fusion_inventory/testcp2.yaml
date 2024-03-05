@@ -1,0 +1,20 @@
+- hosts: all
+  become: true
+  vars:
+    key_file: /tmp/agent.cfg
+  tasks:
+
+    - name: Copy webserver key file into memory
+      ansible.builtin.slurp:
+        src: "{{ key_file }}"
+      register: slurped_key_file
+      delegate_to: localhost
+
+    - name: Write copy of key file from memory
+      ansible.builtin.copy:
+        backup: true
+        dest: "/root/{{ key_file }}"
+        group: root
+        mode: 0600
+        owner: root
+        content: "{{ slurped_key_file['content'] | b64decode }}"
