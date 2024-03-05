@@ -17,7 +17,7 @@
 
   tasks:
     - name: Lade neueste agent.cfg herunter
-      get_url:
+      ansible.builtin.get_url:
         url: https://github.com/gsg-git/awx_pub/blob/main/linux_playbooks/fusion_inventory/agent.cfg
         dest: "/tmp/agent.cfg"
         mode: '0644'
