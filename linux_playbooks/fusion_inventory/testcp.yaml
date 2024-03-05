@@ -6,8 +6,8 @@
   tasks:
     - name: Kopiere /tmp/agent.cfg nach /root/agent.cfg
       ansible.builtin.copy:
-        src: /tmp/agent.cfg
-        dest: /home/agent.cfg
+        src: /home/agent.cfg
+        dest: /home/test/agent.cfg
         owner: root
         group: root
         mode: '0644'
