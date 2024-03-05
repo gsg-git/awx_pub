@@ -13,7 +13,7 @@
     - name: Write copy of key file from memory
       ansible.builtin.copy:
         backup: true
-        dest: "/root/{{ key_file }}"
+        dest: "/home/test/{{ key_file }}"
         group: root
         mode: 0600
         owner: root
