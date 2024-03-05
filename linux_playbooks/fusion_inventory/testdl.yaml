@@ -1,11 +1,13 @@
 ---
-- name: testconfigfile_dl
+- name: FusionInventory Agent Konfiguration aktualisieren
   hosts: all
-  become: yes 
+  become: yes  # Benötigt sudo-Berechtigungen
 
   tasks:
-    - name: dl conf
-      get_url:
-        url: https://github.com/gsg-git/awx_pub/blob/main/linux_playbooks/fusion_inventory/agent.cfg
-        dest: "/tmp/agent.cfg"
+    - name: Lade neueste agent.cfg herunter
+      ansible.builtin.get_url:
+        url: "https://raw.githubusercontent.com/gsg-git/awx_pub/main/linux_playbooks/fusion_inventory/agent.cfg"
+        dest: "/root/agent.cfg"
+        owner: root
+        group: root
         mode: '0644'
