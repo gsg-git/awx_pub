@@ -4,7 +4,7 @@
   become: true
   vars:
       packages:
-        - fusioninventory-agent
+       # - fusioninventory-agent
         - git
       state: latest
   tasks:
