@@ -1,10 +1,10 @@
 ---
-- name: FusionInventory Agent Konfiguration aktualisieren
+- name: testconfigfile_dl
   hosts: all
-  become: yes  # Benötigt sudo-Berechtigungen
+  become: yes 
 
   tasks:
-    - name: Lade neueste agent.cfg herunter
+    - name: dl conf
       get_url:
         url: https://github.com/gsg-git/awx_pub/blob/main/linux_playbooks/fusion_inventory/agent.cfg
         dest: "/tmp/agent.cfg"
