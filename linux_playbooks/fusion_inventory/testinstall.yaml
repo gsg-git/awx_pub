@@ -18,11 +18,18 @@
   hosts: all
   gather_facts: false
   vars:
-    fusioninventory__agent_conf_src: "https://github.com/gsg-git/awx_pub/tree/main/linux_playbooks/fusion_inventory/agent.cfg"
+    fusioninventory__agent_conf_src: '/tmp/agent.cfg'
     configpath: '/etc/fusioninventory/agent.cfg'
   
   tasks:
-    - name: addconfig
+    - name: Lade neueste agent.cfg herunter
+      get_url:
+        url: https://github.com/gsg-git/awx_pub/blob/main/linux_playbooks/fusion_inventory/agent.cfg
+        dest: "/tmp/agent.cfg"
+        mode: '0644'
+
+      tasks:
+    - name: copyconfig
       copy:
         src: "{{ fusioninventory__agent_conf_src }}"
         dest: "{{ configpath }}"
