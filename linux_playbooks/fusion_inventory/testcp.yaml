@@ -1,6 +1,14 @@
-- copy:
-    src: "/tmp/agent.cfg"
-    dest: "/root/"
-  become: true
-  become_user: root
-
+---
+- name: Kopiere agent.cfg zu /root/agent.cfg auf localhost
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Kopiere /tmp/agent.cfg nach /root/agent.cfg auf dem lokalen Host
+      ansible.builtin.copy:
+        src: /tmp/agent.cfg
+        dest: /root/agent.cfg
+        owner: root
+        group: root
+        mode: '0644'
+      delegate_to: localhost
+      become: true
