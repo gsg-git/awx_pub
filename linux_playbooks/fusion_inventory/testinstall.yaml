@@ -14,13 +14,7 @@
        state: present
        update_cache: yes
 
-- name: Set values for config
-  hosts: all
-  gather_facts: false
-  vars:
-    fusioninventory__agent_conf_src: '/tmp/agent.cfg'
-    configpath: '/etc/fusioninventory/agent.cfg'
-  
+
   tasks:
     - name: Lade neueste agent.cfg herunter
       get_url:
@@ -28,14 +22,16 @@
         dest: "/tmp/agent.cfg"
         mode: '0644'
 
-      tasks:
-    - name: copyconfig
+    - name: Ersetze /root/agent.cfg mit der heruntergeladenen Datei
       copy:
-        src: "{{ fusioninventory__agent_conf_src }}"
-        dest: "{{ configpath }}"
+        src: "/tmp/agent.cfg"
+        dest: "/root/agent.cfg"
         owner: root
         group: root
         mode: '0644'
+        force: yes
+
+
     - name: fusioninv service reboot
       service:
         name: fusioninventory-agent
