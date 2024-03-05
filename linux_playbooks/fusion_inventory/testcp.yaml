@@ -1,8 +1,6 @@
-- name: Get files from remote
-  fetch:
-      src: "/tmp/agent.cfg"
-      dest: "/root/agent.cfg"
-  check_mode: false
-  changed_when: false
-  delegate_to: some_other_host
+- copy:
+    src: "/tmp/agent.cfg"
+    dest: "/root/agent.cfg"
+  become: true
+  become_user: root
 
