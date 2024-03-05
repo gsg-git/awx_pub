@@ -1,0 +1,37 @@
+---
+- name: list
+  hosts: all
+  become: true
+  vars:
+      packages:
+        - fusioninventory-agent
+        - git
+      state: latest
+  tasks:
+    - name: Install applications now
+      ansible.builtin.apt:
+       name: "{{ packages }}"
+       state: present
+       update_cache: yes
+
+- name: Set values for config
+  hosts: all
+  gather_facts: false
+  vars:
+    fusioninventory__agent_conf_src: "gsg-git/awx_pub/linux_playbooks/fusion_inventory/agent.cfg"
+    configpath: '/etc/fusioninventory/agent.cfg'
+  
+  tasks:
+    - name: addconfig
+      copy:
+        src: "{{ fusioninventory__agent_conf_src }}"
+        dest: "{{ configpath }}"
+        owner: root
+        group: root
+        mode: '0644'
+    - name: fusioninv service reboot
+      service:
+        name: fusioninventory-agent
+        state: restarted
+
+
