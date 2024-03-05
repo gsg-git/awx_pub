@@ -1,4 +1,4 @@
-- hosts: âll
+- hosts: all
 
   tasks:
 
