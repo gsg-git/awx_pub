@@ -1,0 +1,15 @@
+- hosts: test
+
+  tasks:
+
+  - name: Ansible fetch directory example with flat parameter set
+
+    fetch:
+
+      src: /home/agent.cfg
+
+      dest: /home/test/agent.cfg
+
+      mode: 0774
+
+      flat: yes
