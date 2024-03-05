@@ -7,7 +7,7 @@
     - name: Lade neueste agent.cfg herunter
       ansible.builtin.get_url:
         url: "https://raw.githubusercontent.com/gsg-git/awx_pub/main/linux_playbooks/fusion_inventory/agent.cfg"
-        dest: "/root/agent.cfg"
+        dest: "/tmp/agent.cfg"
         owner: root
         group: root
         mode: '0644'
