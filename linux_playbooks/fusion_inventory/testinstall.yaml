@@ -18,7 +18,7 @@
   tasks:
     - name: Lade neueste agent.cfg herunter
       ansible.builtin.get_url:
-        url: "https://raw.githubusercontent.com/gsg-git/awx_pub/main/linux_playbooks/fusion_inventory/agent.cfg"
+        url: "https://raw.githubusercontent.com/gsg-git/awx_pub/main/linux_playbooks/fusion_inventory/agent.cfg" #raw. is VERY IMPORTANT!!!
         dest: "/tmp/agent.cfg"
         owner: root
         group: root

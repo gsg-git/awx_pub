@@ -1,0 +1,14 @@
+---
+- name: copy
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: copy
+      become: true
+      ansible.builtin.copy:
+        src: /tmp/agent.cfg
+        dest: /root/agent.cfg
+        owner: root
+        group: root
+        mode: '0644'
+        remote_src: true
