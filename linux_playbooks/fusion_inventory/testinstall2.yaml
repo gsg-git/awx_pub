@@ -3,20 +3,18 @@
   hosts: all
   become: true
   vars:
-      packages:
-        - fusioninventory-agent
-        - git
-      state: latest
+    packages:
+      - fusioninventory-agent
+      - git
+    state: latest
   tasks:
     - name: Install applications now
       ansible.builtin.apt:
-       name: "{{ packages }}"
-       state: present
-       update_cache: yes
+        name: "{{ packages }}"
+        state: "{{ state }}"
+        update_cache: yes
 
-
-  tasks:
-    - name: Lade neueste agent.cfg herunter
+    - name: load agent.cfg
       ansible.builtin.get_url:
         url: "https://raw.githubusercontent.com/gsg-git/awx_pub/main/linux_playbooks/fusion_inventory/agent.cfg" #raw. is VERY IMPORTANT!!!
         dest: "/tmp/agent.cfg"
@@ -24,8 +22,7 @@
         group: root
         mode: '0644'
 
-  tasks:
-    - name: copy
+    - name: copy cfg
       become: true
       ansible.builtin.copy:
         src: /tmp/agent.cfg
@@ -36,11 +33,8 @@
         remote_src: true
         force: yes
 
-
-    - name: fusioninv service reboot
-      service:
+    - name: fusioninv service reboot and enable
+      ansible.builtin.service:
         name: fusioninventory-agent
         state: restarted
         enabled: yes
-
-
