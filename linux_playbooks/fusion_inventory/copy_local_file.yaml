@@ -1,3 +1,7 @@
+---
+- name: copy
+  hosts: all
+  gather_facts: no
   tasks:
     - name: copy
       become: true
@@ -8,4 +12,3 @@
         group: root
         mode: '0644'
         remote_src: true
-        force: yes
