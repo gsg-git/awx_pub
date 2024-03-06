@@ -5,7 +5,7 @@
   vars:
     packages:
       - fusioninventory-agent
-      - git
+      #- git
     state: latest
   tasks:
     - name: Install applications now
