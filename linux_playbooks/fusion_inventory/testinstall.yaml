@@ -25,13 +25,15 @@
         mode: '0644'
 
   tasks:
-    - name: Ersetze /root/agent.cfg mit der heruntergeladenen Datei
+    - name: copy
+      become: true
       ansible.builtin.copy:
-        src: "/tmp/agent.cfg"
-        dest: "/root/agent.cfg"
+        src: /tmp/agent.cfg
+        dest: /root/agent.cfg
         owner: root
         group: root
         mode: '0644'
+        remote_src: true
         force: yes
 
 

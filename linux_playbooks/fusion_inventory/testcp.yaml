@@ -1,15 +1,11 @@
----
-- name: Kopiere Konfigurationsdatei zu /root
-  hosts: all
-  become: true  # Erhöhe die Berechtigung, um Aktionen als root auszuführen
-
   tasks:
-    - name: Kopiere /tmp/agent.cfg nach /root/agent.cfg
+    - name: copy
+      become: true
       ansible.builtin.copy:
-        src: /home/agent.cfg
-        dest: /home/test/agent.cfg
+        src: /tmp/agent.cfg
+        dest: /root/agent.cfg
         owner: root
         group: root
         mode: '0644'
-        force: yes  # Überschreibe die existierende Datei, falls vorhanden
-        delegate_to: localhost
+        remote_src: true
+        force: yes
