@@ -1,0 +1,11 @@
+---
+- name: Ausgabe von Beispiel-Umgebungsvariablen
+  hosts: all
+  tasks:
+    - name: Ausgabe von EXAMPLE_VAR1
+      ansible.builtin.debug:
+        msg: "Der Wert von EXAMPLE_VAR1 ist: {{ lookup('ansible.builtin.env', 'EXAMPLE_VAR1') }}"
+
+    - name: Ausgabe von EXAMPLE_VAR2
+      ansible.builtin.debug:
+        msg: "Der Wert von EXAMPLE_VAR2 ist: {{ lookup('ansible.builtin.env', 'EXAMPLE_VAR2') }}"
